@@ -21,11 +21,12 @@ def col_indices(array, minf, maxf):
                 break
     return (min_index, max_index)
 
-def cc_vis(filename, jj=200, W=2**16):
-##    #jj is frequency a for [a, 2a) chroma octave
-##    #W is FFT size: power of 2 (minimum 2**10, maximum 2**18)
-##    #smaller = faster and sharper time resolution
-##    #larger = slower and sharper frequency resolution
+def cc_vis(filename, jj=200, W=2**16, colormap='rainbow'):
+## jj is frequency a for [a, 2a) chroma octave
+## W is FFT size: power of 2 (minimum 2**10, maximum 2**18)
+## smaller W = faster runtime and sharper time resolution
+## larger W = slower runtime and sharper frequency resolution
+## see https://matplotlib.org/3.5.1/tutorials/colors/colormaps.html for colormap options
 
     #read audio file and get an array of its audio frames averaged to mono
     #as well as its sample rate in hz
@@ -113,7 +114,7 @@ def cc_vis(filename, jj=200, W=2**16):
 
     #paint a picture of the result
     f, ax = plt.subplots()
-    ax.imshow(SS, origin='lower', cmap='viridis',
+    ax.imshow(SS, origin='lower', cmap=colormap,
           extent=(0, L, S[0,a], S[0,b]))
     ax.axis('tight')
     ax.set_ylabel('Chroma [\'Hz\']')
