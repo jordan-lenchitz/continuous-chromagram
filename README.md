@@ -13,3 +13,6 @@ x is frequency a for [a, 2a) chroma octave
 W is FFT size: power of 2 (minimum 2^10, maximum 2^18); smaller = faster runtime and sharper time resolution, larger = slower runtime and sharper frequency resolution
 
 colormap is for visualization; https://matplotlib.org/3.5.1/tutorials/colors/colormaps.html for options
+
+Example: visualize the octave-reduced spectrogram of 'my_sound.wav' in the chroma octave [300, 600) 'Hz' with a 1024-point FFT and the colormap plasma
+>cc_vis('my_sound.wav', 300, 2**10, 'plasma')
