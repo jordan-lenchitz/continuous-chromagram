@@ -3,7 +3,7 @@ import numpy as np
 from skimage import util
 import matplotlib.pyplot as plt
 
-'''function that gets column indices for frequency range'''
+'''helper function that gets column indices for frequency range'''
 def col_indices(array, minf, maxf):
     j = 0
     while j<1:
