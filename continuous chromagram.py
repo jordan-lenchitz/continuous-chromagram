@@ -21,8 +21,8 @@ def col_indices(array, minf, maxf):
                 break
     return (min_index, max_index)
 
-def cc_vis(filename, jj=200, W=2**16, colormap='rainbow'):
-## jj is frequency a for [a, 2a) chroma octave
+def cc_vis(filename, a=200, W=2**16, colormap='rainbow'):
+## a is frequency a for [a, 2a) chroma octave
 ## W is FFT size: power of 2 (minimum 2**10, maximum 2**18)
 ## smaller W = faster runtime and sharper time resolution
 ## larger W = slower runtime and sharper frequency resolution
@@ -62,16 +62,16 @@ def cc_vis(filename, jj=200, W=2**16, colormap='rainbow'):
     S = np.insert(S, 0, [(i+1)*rate/(2*freq_slices) for i in range(freq_slices)], 0)
 
     #get indices from array
-    a,b = col_indices(S, jj, 2*jj)
+    a,b = col_indices(S, a, 2*a)
 
     #octave reduce helper row frequencies above chroma octave
     for thing in range(b+1, len(S[0])):
-        while S[0,thing] > 2*jj:
+        while S[0,thing] > 2*a:
             S[0,thing] *= 0.5
             
     #octave reduce helper row frequencies below chroma octave
     for thing in range(0, a):
-        while S[0,thing] < 2*jj:
+        while S[0,thing] < 2*a:
             S[0,thing] *= 2.0           
 
     #octave reduce amplitudes in a copy of S
