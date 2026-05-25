@@ -1,20 +1,14 @@
-# continuous-chromagram
-Octave-reduced spectrogram visualizer.
+# continuous chromagram
+octave-reduced spectrogram visualizer as described in [`doi.org/10.1007/978-3-031-07015-0_25`](https://doi.org/10.1007/978-3-031-07015-0_25) 
 
-As described in: Lenchitz, Jordan, and Anthony Coniglio. Continuous Chromagrams and Pseudometric Spaces of Sound Spectra. In: Montiel, M., Agustín-Aquino, O.A., Gómez, F., Kastine, J., Lluis-Puebla, E., Milam, B. (eds) Mathematics and Computation in Music. MCM 2022. Lecture Notes in Computer Science, vol 13267. Springer, Cham. https://doi.org/10.1007/978-3-031-07015-0_25 (Preprint available <a href="https://github.com/jordan-lenchitz/continuous-chromagram/blob/9a081ebf1b613c15d870e381b41ec78acc63ee7a/Continuous%20Chromagrams%20and%20Pseudometric%20Spaces%20of%20Sound%20Spectra.pdf">in this repository</a>.)
+please read <a href="https://github.com/jordan-lenchitz/continuous-chromagram/blob/main/preprint.pdf">full-color pdf preprint and feel free to email</a>
 
+# howto
+`pip install librosa numpy skimage matplotlib` if you must then `cc_vis(filename, x=200, W=2**16, colormap='rainbow')`
 
-Necessary modules: librosa, numpy, skimage, matplotlib
+`filename` doth be your file of a type supported by `librosa`, `x :=` frequency `a` for the `[a, 2a)` chroma octave, `W` is your power of 2 between `2^10` and `2^18` where smaller means faster runtime with sharper time resolution and larger means slower runtime with sharper frequency resolution, and then colormap is for visualization see their [docs](https://matplotlib.org/3.5.1/tutorials/colors/colormaps.html) for all the fun options
 
-Syntax: cc_vis(filename, x=200, W=2**16, colormap='rainbow')
+# example 
+visualize the octave-reduced spectrogram of `'my_sound.wav'` in the chroma octave `[300, 600)` 'Hz' with a 1024-point FFT and the colormap `plasma`
 
-filename is the audio file in question; any file type supported by librosa should work
-
-x is frequency a for [a, 2a) chroma octave
-
-W is FFT size: power of 2 (minimum 2^10, maximum 2^18); smaller = faster runtime and sharper time resolution, larger = slower runtime and sharper frequency resolution
-
-colormap is for visualization; https://matplotlib.org/3.5.1/tutorials/colors/colormaps.html for options
-
-Example: visualize the octave-reduced spectrogram of 'my_sound.wav' in the chroma octave [300, 600) 'Hz' with a 1024-point FFT and the colormap plasma
->cc_vis('my_sound.wav', 300, 2**10, 'plasma')
+`cc_vis('my_sound.wav', 300, 2**10, 'plasma')`
